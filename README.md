@@ -18,31 +18,33 @@
 * Автотесты: написал 11 тестов (`core/tests.py`), которые проверяют логику счетов, валидацию переводов, права доступа и коды ответов API (`200`, `400`, `403`, `404`).
 
 ## Структура проекта
+```text
 banking_app/
-├── config/               # Настройки проекта, маршрутизация и WSGI/ASGI
-├── core/                 # Основное приложение с банковской логикой
-│   ├── migrations/       # Миграции базы данных
-│   ├── admin.py          # Настройка моделей для админ-панели Django
-│   ├── models.py         # Модели Client, Account, Transaction
-│   ├── serializers.py    # Сериализаторы DRF
-│   ├── services.py       # Сервисный слой (TransferService, TransferError)
-│   ├── tests.py          # Юнит- и API-тесты
-│   ├── urls.py           # Роутинг эндпоинтов через DefaultRouter
-│   └── views.py          # ViewSet'ы и эндпоинт перевода средств
-├── .gitignore            # Исключения для Git (venv, кэш, секреты)
-├── manage.py             # Стандартный скрипт управления Django
-└── requirements.txt      # Зависимости проекта
-
-
+├── config/
+├── core/
+│   ├── migrations/
+│   ├── admin.py
+│   ├── models.py
+│   ├── serializers.py
+│   ├── services.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── .gitignore
+├── manage.py
+├── README.md
+└── requirements.txt
+```
 ## Основные эндпоинты API
-> Все запросы требуют авторизации (`SessionAuthentication` или `BasicAuthentication`).
-| Метод         | Эндпоинт                       | Что делает                                        |
-| `GET`, `POST` | `/api/clients/`                | Получить список клиентов или создать нового       |
-| `GET`, `POST` | `/api/accounts/`               | Получить список счетов или открыть новый счёт     |
-| `POST`        | `/api/accounts/{id}/transfer/` | Перевести средства со счёта `{id}` на другой счёт |
-| `GET`         | `/api/transactions/`           | Посмотреть историю транзакций (только чтение)     |
+Все запросы требуют авторизации (SessionAuthentication или BasicAuthentication):
+```text
+   GET, POST /api/clients/ — список клиентов или создание нового клиента
+   GET, POST /api/accounts/ — список счетов или открытие нового счёта
+   POST /api/accounts/{id}/transfer/ — перевод средств со счёта {id} на другой счёт
+   GET /api/transactions/ — история транзакций (только чтение)
+```
 
-### Пример перевода средств
+## Пример перевода средств
 Запрос: `POST /api/accounts/1/transfer/`
 {
   "target_account_id": 2,
