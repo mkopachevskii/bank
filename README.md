@@ -26,6 +26,11 @@
 ```text
 banking_app/
 ├── config/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
 ├── core/
 │   ├── migrations/
 │   ├── admin.py
