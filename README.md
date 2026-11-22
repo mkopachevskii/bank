@@ -79,5 +79,13 @@ banking_app/
    python manage.py createsuperuser
    python manage.py runserver
 
+## Быстрый запуск с помощью Docker (рекомендуемый способ)
+1. Склонируйте репозиторий и перейдите в папку проекта:
+   git clone https://github.com/mkopachevskii/bank.git
+   cd banking_app
+2. Запустите сборку и контейнеры (Django + PostgreSQL):
+   docker compose up --build
+3. После запуска миграций и старта сервера приложение будет доступно по адресу http://127.0.0.1:8000/
+
 ## Запуск тестов
 python manage.py test
